@@ -1,12 +1,14 @@
-on: [push]
+name: Horusec report
+on: pull_request
 
 jobs:
-  checking_code:
+  ckecking_code:
     runs-on: ubuntu-latest
-    name: Horusec Scan
+    name: Horusec scan
     steps:
+      - uses: actions/checkout@v2
       - name: Run Horusec
         id: run_horusec
         uses: fike/horusec-action@v0.1
         with:
-          arguments: -p="./" --ignore="**/.vscode/**, **/*.env, **/.mypy_cache/**, **/tests/**"
+          arguments: -p="./" -a="${{ secrets.HORUSEC_TOKEN }}" -u="${{ secrets.HORUSEC_URL }}"  -p .
