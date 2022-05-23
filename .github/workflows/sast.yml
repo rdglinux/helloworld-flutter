@@ -1,5 +1,5 @@
 name: Horusec report
-on: pull_request
+on: [push]
 
 jobs:
   ckecking_code:
